@@ -1,38 +1,6 @@
 window.ATLAS_REFS = [
  {
   "id": 1,
-  "group": "study",
-  "authors": "Setiya DFJ, Kusnan DAP, Soleman SR",
-  "title": "Comparative safety of next-generation non-steroidal MRA (finerenone), ARNI (sacubitril/valsartan), and sentinel dual ERA (aprocitentan) versus conventional regimens in resistant hypertension: a disproportionality and time-to-onset analysis from FDA FAERS",
-  "journal": "",
-  "year": 2026,
-  "volume": "",
-  "issue": "",
-  "pages": "",
-  "doi": "",
-  "pmid": "",
-  "url": "sources/manuscript.md",
-  "note": "Supplied manuscript full text; local copy.",
-  "short": "Setiya DFJ et al. (2026). Comparative safety of next-generation non-steroidal MRA (finerenone), ARNI (sacubitril/valsartan), and sentinel dual ERA (aprocitentan) versus conventional regimens in resistant hypertension: a disproportionality and time-to-onset analysis from FDA FAERS."
- },
- {
-  "id": 2,
-  "group": "study",
-  "authors": "Setiya DFJ, et al.",
-  "title": "Comparative safety of next-generation non-steroidal MRA, ARNI, and sentinel dual ERA versus conventional regimens in resistant hypertension: a FAERS disproportionality and time-to-onset analysis",
-  "journal": "",
-  "year": 2026,
-  "volume": "",
-  "issue": "",
-  "pages": "",
-  "doi": "",
-  "pmid": "",
-  "url": "sources/abstract.md",
-  "note": "Conference abstract ABST-000034, KHypertension Seoul 2026 (supplied); local copy.",
-  "short": "Setiya DFJ et al. (2026). Comparative safety of next-generation non-steroidal MRA, ARNI, and sentinel dual ERA versus conventional regimens in resistant hypertension: a FAERS disproportionality and time-to-onset analysis."
- },
- {
-  "id": 3,
   "group": "data",
   "authors": "U.S. Food and Drug Administration",
   "title": "FDA Adverse Event Reporting System (FAERS) public dashboard",
@@ -48,7 +16,7 @@ window.ATLAS_REFS = [
   "short": "U.S. Food and Drug Administration (None). FDA Adverse Event Reporting System (FAERS) public dashboard."
  },
  {
-  "id": 4,
+  "id": 2,
   "group": "data",
   "authors": "U.S. Food and Drug Administration",
   "title": "openFDA drug adverse event API documentation",
@@ -64,7 +32,7 @@ window.ATLAS_REFS = [
   "short": "U.S. Food and Drug Administration (None). openFDA drug adverse event API documentation."
  },
  {
-  "id": 5,
+  "id": 3,
   "group": "data",
   "authors": "International Council for Harmonisation",
   "title": "Medical Dictionary for Regulatory Activities (MedDRA) version 27.0",
@@ -80,7 +48,7 @@ window.ATLAS_REFS = [
   "short": "International Council for Harmonisation (2024). Medical Dictionary for Regulatory Activities (MedDRA) version 27.0."
  },
  {
-  "id": 6,
+  "id": 4,
   "group": "data",
   "authors": "National Library of Medicine",
   "title": "RxNorm: normalized names for clinical drugs",
@@ -96,7 +64,7 @@ window.ATLAS_REFS = [
   "short": "National Library of Medicine (None). RxNorm: normalized names for clinical drugs."
  },
  {
-  "id": 7,
+  "id": 5,
   "group": "methods",
   "authors": "Evans SJ, Waller PC, Davis S",
   "title": "Use of proportional reporting ratios (PRRs) for signal generation from spontaneous adverse drug reaction reports",
@@ -112,7 +80,7 @@ window.ATLAS_REFS = [
   "short": "Evans SJ et al. (2001). Use of proportional reporting ratios (PRRs) for signal generation from spontaneous adverse drug reaction reports. Pharmacoepidemiol Drug Saf."
  },
  {
-  "id": 8,
+  "id": 6,
   "group": "methods",
   "authors": "Rothman KJ, Lanes S, Sacks ST",
   "title": "The reporting odds ratio and its advantages over the proportional reporting ratio",
@@ -128,7 +96,7 @@ window.ATLAS_REFS = [
   "short": "Rothman KJ et al. (2004). The reporting odds ratio and its advantages over the proportional reporting ratio. Pharmacoepidemiol Drug Saf."
  },
  {
-  "id": 9,
+  "id": 7,
   "group": "methods",
   "authors": "Bate A, Lindquist M, Edwards IR, Olsson S, Orre R, Lansner A, et al.",
   "title": "A Bayesian neural network method for adverse drug reaction signal generation",
@@ -144,7 +112,7 @@ window.ATLAS_REFS = [
   "short": "Bate A et al. (1998). A Bayesian neural network method for adverse drug reaction signal generation. Eur J Clin Pharmacol."
  },
  {
-  "id": 10,
+  "id": 8,
   "group": "methods",
   "authors": "Benjamini Y, Hochberg Y",
   "title": "Controlling the false discovery rate: a practical and powerful approach to multiple testing",
@@ -160,7 +128,7 @@ window.ATLAS_REFS = [
   "short": "Benjamini Y et al. (1995). Controlling the false discovery rate: a practical and powerful approach to multiple testing. J R Stat Soc Series B Stat Methodol."
  },
  {
-  "id": 11,
+  "id": 9,
   "group": "methods",
   "authors": "Sauzet O, Dyck J, Cornelius V",
   "title": "Optimal significance levels and sample sizes for signal detection methods based on non-constant hazards",
@@ -176,7 +144,7 @@ window.ATLAS_REFS = [
   "short": "Sauzet O et al. (2024). Optimal significance levels and sample sizes for signal detection methods based on non-constant hazards. Drug Saf."
  },
  {
-  "id": 12,
+  "id": 10,
   "group": "methods",
   "authors": "Khaleel MA, Khan AH, Ghadzi SMS, Adnan AS, Abdallah QM",
   "title": "A standardized dataset of a spontaneous adverse event reporting system",
@@ -192,7 +160,7 @@ window.ATLAS_REFS = [
   "short": "Khaleel MA et al. (2022). A standardized dataset of a spontaneous adverse event reporting system. Healthcare (Basel)."
  },
  {
-  "id": 13,
+  "id": 11,
   "group": "methods",
   "authors": "Hammad TA, Rochon J",
   "title": "Analytic misjudgment of drug safety evidence and causality: from the prosecutor's fallacy and Simpson's paradox to artificial intelligence",
@@ -208,7 +176,7 @@ window.ATLAS_REFS = [
   "short": "Hammad TA et al. (2026). Analytic misjudgment of drug safety evidence and causality: from the prosecutor's fallacy and Simpson's paradox to artificial intelligence. Drug Saf."
  },
  {
-  "id": 14,
+  "id": 12,
   "group": "guidelines",
   "authors": "Carey RM, Calhoun DA, Bakris GL, et al.",
   "title": "Resistant Hypertension: Detection, Evaluation, and Management: A Scientific Statement From the American Heart Association.",
@@ -224,7 +192,7 @@ window.ATLAS_REFS = [
   "short": "Carey RM et al. (2018). Resistant Hypertension: Detection, Evaluation, and Management: A Scientific Statement From the American Heart Association.. Hypertension."
  },
  {
-  "id": 15,
+  "id": 13,
   "group": "guidelines",
   "authors": "Mancia G, Kreutz R, Brunström M, et al.",
   "title": "2023 ESH Guidelines for the management of arterial hypertension.",
@@ -240,7 +208,7 @@ window.ATLAS_REFS = [
   "short": "Mancia G et al. (2023). 2023 ESH Guidelines for the management of arterial hypertension.. J Hypertens."
  },
  {
-  "id": 16,
+  "id": 14,
   "group": "guidelines",
   "authors": "Writing Committee Members, Jones DW, Ferdinand KC, Taler SJ, Johnson HM, Shimbo D, et al.",
   "title": "2025 AHA/ACC/AANP/AAPA/ABC/ACCP/ACPM/AGS/AMA/ASPC/NMA/PCNA/SGIM Guideline for the Prevention, Detection, Evaluation and Management of High Blood Pressure in Adults: A Report of the American College of Cardiology/American Heart Association Joint Committee on Clinical Practice Guidelines.",
@@ -256,7 +224,7 @@ window.ATLAS_REFS = [
   "short": "Writing Committee Members et al. (2025). 2025 AHA/ACC/AANP/AAPA/ABC/ACCP/ACPM/AGS/AMA/ASPC/NMA/PCNA/SGIM Guideline for the Prevention, Detection, Evaluation and Management of High Blood Pressure in Adults: A Report of the American College of Cardiology/American Heart Association Joint Committee on Clinical Practice Guidelines.. Hypertension."
  },
  {
-  "id": 17,
+  "id": 15,
   "group": "guidelines",
   "authors": "Buso G, Agabiti-Rosei C, Lemoli M, Corvini F, Muiesan ML.",
   "title": "The global burden of resistant hypertension and potential treatment options.",
@@ -272,7 +240,7 @@ window.ATLAS_REFS = [
   "short": "Buso G et al. (2024). The global burden of resistant hypertension and potential treatment options.. Eur Cardiol."
  },
  {
-  "id": 18,
+  "id": 16,
   "group": "guidelines",
   "authors": "Williams B, MacDonald TM, Morant S, et al.",
   "title": "Spironolactone versus placebo, bisoprolol, and doxazosin to determine the optimal treatment for drug-resistant hypertension (PATHWAY-2): a randomised, double-blind, crossover trial.",
@@ -288,7 +256,7 @@ window.ATLAS_REFS = [
   "short": "Williams B et al. (2015). Spironolactone versus placebo, bisoprolol, and doxazosin to determine the optimal treatment for drug-resistant hypertension (PATHWAY-2): a randomised, double-blind, crossover trial.. Lancet."
  },
  {
-  "id": 19,
+  "id": 17,
   "group": "finerenone",
   "authors": "Bakris GL, Agarwal R, Anker SD, Pitt B, Ruilope LM, Rossing P, et al.",
   "title": "Effect of Finerenone on Chronic Kidney Disease Outcomes in Type 2 Diabetes.",
@@ -304,7 +272,7 @@ window.ATLAS_REFS = [
   "short": "Bakris GL et al. (2020). Effect of Finerenone on Chronic Kidney Disease Outcomes in Type 2 Diabetes.. N Engl J Med."
  },
  {
-  "id": 20,
+  "id": 18,
   "group": "finerenone",
   "authors": "Pitt B, Filippatos G, Agarwal R, Anker SD, Bakris GL, Rossing P, et al.",
   "title": "Cardiovascular Events with Finerenone in Kidney Disease and Type 2 Diabetes.",
@@ -320,7 +288,7 @@ window.ATLAS_REFS = [
   "short": "Pitt B et al. (2021). Cardiovascular Events with Finerenone in Kidney Disease and Type 2 Diabetes.. N Engl J Med."
  },
  {
-  "id": 21,
+  "id": 19,
   "group": "finerenone",
   "authors": "Solomon SD, McMurray JJV, Vaduganathan M, Claggett B, Jhund PS, Desai AS, et al.",
   "title": "Finerenone in Heart Failure with Mildly Reduced or Preserved Ejection Fraction.",
@@ -336,7 +304,7 @@ window.ATLAS_REFS = [
   "short": "Solomon SD et al. (2024). Finerenone in Heart Failure with Mildly Reduced or Preserved Ejection Fraction.. N Engl J Med."
  },
  {
-  "id": 22,
+  "id": 20,
   "group": "finerenone",
   "authors": "Agarwal R, Joseph A, Anker SD, Filippatos G, Rossing P, Ruilope LM, et al.",
   "title": "Hyperkalemia Risk with Finerenone: Results from the FIDELIO-DKD Trial.",
@@ -352,7 +320,7 @@ window.ATLAS_REFS = [
   "short": "Agarwal R et al. (2022). Hyperkalemia Risk with Finerenone: Results from the FIDELIO-DKD Trial.. J Am Soc Nephrol."
  },
  {
-  "id": 23,
+  "id": 21,
   "group": "finerenone",
   "authors": "Kendrick JB, Dixon AM.",
   "title": "Review of Hyperkalemia Profile for Mineralocorticoid Receptor Antagonist in Patients with Chronic Kidney Disease and Type 2 Diabetes.",
@@ -368,7 +336,7 @@ window.ATLAS_REFS = [
   "short": "Kendrick JB et al. (2026). Review of Hyperkalemia Profile for Mineralocorticoid Receptor Antagonist in Patients with Chronic Kidney Disease and Type 2 Diabetes.. Cardiorenal Med."
  },
  {
-  "id": 24,
+  "id": 22,
   "group": "finerenone",
   "authors": "Singla A, Singh G, Kaur G, Luthra S, Lodha C, Malik MS, et al.",
   "title": "Sex-Specific Safety Signals of Finerenone Versus Spironolactone: Insights From the FDA Adverse Event Reporting System.",
@@ -384,7 +352,7 @@ window.ATLAS_REFS = [
   "short": "Singla A et al. (2026). Sex-Specific Safety Signals of Finerenone Versus Spironolactone: Insights From the FDA Adverse Event Reporting System.. Cureus."
  },
  {
-  "id": 25,
+  "id": 23,
   "group": "finerenone",
   "authors": "Lin HH, Cui WH, Xu F, He JY, Li LC, Xu JJ, et al.",
   "title": "Pharmacovigilance profiles of three generations of mineralocorticoid receptor antagonists and network toxicology analysis.",
@@ -400,7 +368,7 @@ window.ATLAS_REFS = [
   "short": "Lin HH et al. (2026). Pharmacovigilance profiles of three generations of mineralocorticoid receptor antagonists and network toxicology analysis.. Front Med (Lausanne)."
  },
  {
-  "id": 26,
+  "id": 24,
   "group": "finerenone",
   "authors": "Zhang H, Li MY, Deng W.",
   "title": "Finerenone: a next-generation nonsteroidal mineralocorticoid receptor antagonist reshaping the management of cardiovascular and metabolic diseases.",
@@ -416,7 +384,7 @@ window.ATLAS_REFS = [
   "short": "Zhang H et al. (2026). Finerenone: a next-generation nonsteroidal mineralocorticoid receptor antagonist reshaping the management of cardiovascular and metabolic diseases.. Biochem Pharmacol."
  },
  {
-  "id": 27,
+  "id": 25,
   "group": "finerenone",
   "authors": "Vetrano D, Cianciolo G, Barbuto S, Ribichini D, Berti S, Mistretta A, et al.",
   "title": "A comparative real-world analysis of finerenone and steroidal mineralocorticoid receptor antagonists in patients with chronic kidney disease.",
@@ -432,7 +400,7 @@ window.ATLAS_REFS = [
   "short": "Vetrano D et al. (2026). A comparative real-world analysis of finerenone and steroidal mineralocorticoid receptor antagonists in patients with chronic kidney disease.. Front Pharmacol."
  },
  {
-  "id": 28,
+  "id": 26,
   "group": "smra",
   "authors": "Bogin V, Weir MR.",
   "title": "Eplerenone Revisited: A Balanced Reappraisal of Its Role in Hypertension, Heart Failure, and Cardiorenal Disease.",
@@ -448,7 +416,7 @@ window.ATLAS_REFS = [
   "short": "Bogin V et al. (2026). Eplerenone Revisited: A Balanced Reappraisal of Its Role in Hypertension, Heart Failure, and Cardiorenal Disease.. J Cardiovasc Pharmacol."
  },
  {
-  "id": 29,
+  "id": 27,
   "group": "smra",
   "authors": "Yang X, Zheng X, Zhang M, Huang J, Huang P, Wang J.",
   "title": "Drug-Induced Gynecomastia: Data Mining and Analysis of the FDA Adverse Event Reporting System Database.",
@@ -464,7 +432,7 @@ window.ATLAS_REFS = [
   "short": "Yang X et al. (2024). Drug-Induced Gynecomastia: Data Mining and Analysis of the FDA Adverse Event Reporting System Database.. Clin Epidemiol."
  },
  {
-  "id": 30,
+  "id": 28,
   "group": "smra",
   "authors": "Agarwal R, Rossignol P, Romero A, Garza D, Mayo MR, Warren S, et al.",
   "title": "Patiromer versus placebo to enable spironolactone use in patients with resistant hypertension and chronic kidney disease (AMBER): a phase 2, randomised, double-blind, placebo-controlled trial.",
@@ -480,7 +448,7 @@ window.ATLAS_REFS = [
   "short": "Agarwal R et al. (2019). Patiromer versus placebo to enable spironolactone use in patients with resistant hypertension and chronic kidney disease (AMBER): a phase 2, randomised, double-blind, placebo-controlled trial.. Lancet."
  },
  {
-  "id": 31,
+  "id": 29,
   "group": "smra",
   "authors": "Lee CJ, Ihm SH, Shin DH, Jeong JO, Kim JH, Chun KH, et al.",
   "title": "Spironolactone vs Amiloride for Resistant Hypertension: A Randomized Clinical Trial.",
@@ -496,7 +464,7 @@ window.ATLAS_REFS = [
   "short": "Lee CJ et al. (2025). Spironolactone vs Amiloride for Resistant Hypertension: A Randomized Clinical Trial.. JAMA."
  },
  {
-  "id": 32,
+  "id": 30,
   "group": "arni",
   "authors": "McMurray JJV, Packer M, Desai AS, Gong J, Lefkowitz MP, Rizkala AR, et al.",
   "title": "Angiotensin-neprilysin inhibition versus enalapril in heart failure.",
@@ -512,7 +480,7 @@ window.ATLAS_REFS = [
   "short": "McMurray JJV et al. (2014). Angiotensin-neprilysin inhibition versus enalapril in heart failure.. N Engl J Med."
  },
  {
-  "id": 33,
+  "id": 31,
   "group": "arni",
   "authors": "Solomon SD, McMurray JJV, Anand IS, Ge J, Lam CSP, Maggioni AP, et al.",
   "title": "Angiotensin-Neprilysin Inhibition in Heart Failure with Preserved Ejection Fraction.",
@@ -528,7 +496,7 @@ window.ATLAS_REFS = [
   "short": "Solomon SD et al. (2019). Angiotensin-Neprilysin Inhibition in Heart Failure with Preserved Ejection Fraction.. N Engl J Med."
  },
  {
-  "id": 34,
+  "id": 32,
   "group": "arni",
   "authors": "Gupta DK, Stevenson LW, Garner EM, Maulion C, Nian H, Wright PR, et al.",
   "title": "Modest Contribution of Bradykinin to Blood Pressure Reduction by Sacubitril/Valsartan in Chronic Heart Failure.",
@@ -544,7 +512,7 @@ window.ATLAS_REFS = [
   "short": "Gupta DK et al. (2026). Modest Contribution of Bradykinin to Blood Pressure Reduction by Sacubitril/Valsartan in Chronic Heart Failure.. Circ Heart Fail."
  },
  {
-  "id": 35,
+  "id": 33,
   "group": "arni",
   "authors": "Suffritti C, Chan S, Ferrara AL, Lekli E, Palestra F, Tuncay G, et al.",
   "title": "Bradykinin-Mediated Angioedema Induced by Drugs.",
@@ -560,7 +528,7 @@ window.ATLAS_REFS = [
   "short": "Suffritti C et al. (2025). Bradykinin-Mediated Angioedema Induced by Drugs.. J Clin Med."
  },
  {
-  "id": 36,
+  "id": 34,
   "group": "arni",
   "authors": "Savarese G, Basile C, Mebazaa A, Bayes-Genis A, Kang SM, Yoo BS, et al.",
   "title": "Ten years real-world experience with sacubitril/valsartan in patients with heart failure with reduced ejection fraction.",
@@ -576,7 +544,7 @@ window.ATLAS_REFS = [
   "short": "Savarese G et al. (2026). Ten years real-world experience with sacubitril/valsartan in patients with heart failure with reduced ejection fraction.. ESC Heart Fail."
  },
  {
-  "id": 37,
+  "id": 35,
   "group": "arni",
   "authors": "Crum KL, Vaduganathan M, Desai RJ",
   "title": "Risk of Hyperkalemia in Patients with Heart Failure Treated with Spironolactone in Combination with Sacubitril/Valsartan vs. Renin-Angiotensin System Inhibitors.",
@@ -592,7 +560,7 @@ window.ATLAS_REFS = [
   "short": "Crum KL et al. (2026). Risk of Hyperkalemia in Patients with Heart Failure Treated with Spironolactone in Combination with Sacubitril/Valsartan vs. Renin-Angiotensin System Inhibitors.. Clin Pharmacol Ther."
  },
  {
-  "id": 38,
+  "id": 36,
   "group": "arni",
   "authors": "Li X, Yang F, Yuan L, Dong T",
   "title": "Overall safety evaluation of the risk signals of sacubitril/valsartan: a postmarketing pharmacoepidemiology study from 2015 to 2024.",
@@ -608,7 +576,7 @@ window.ATLAS_REFS = [
   "short": "Li X et al. (2025). Overall safety evaluation of the risk signals of sacubitril/valsartan: a postmarketing pharmacoepidemiology study from 2015 to 2024.. Arch Cardiovasc Dis."
  },
  {
-  "id": 39,
+  "id": 37,
   "group": "era",
   "authors": "Schlaich MP, Bellet M, Weber MA, Danaietash P, Bakris GL, Flack JM, et al.",
   "title": "Dual endothelin antagonist aprocitentan for resistant hypertension (PRECISION): a multicentre, blinded, randomised, parallel-group, phase 3 trial.",
@@ -624,7 +592,7 @@ window.ATLAS_REFS = [
   "short": "Schlaich MP et al. (2022). Dual endothelin antagonist aprocitentan for resistant hypertension (PRECISION): a multicentre, blinded, randomised, parallel-group, phase 3 trial.. Lancet."
  },
  {
-  "id": 40,
+  "id": 38,
   "group": "era",
   "authors": "Rossignol P, Clozel M, Dreier RF, Flack JM, Flamion B, Mann J, et al.",
   "title": "Aprocitentan in Patients With Chronic Kidney Disease and Resistant Hypertension.",
@@ -640,7 +608,7 @@ window.ATLAS_REFS = [
   "short": "Rossignol P et al. (2026). Aprocitentan in Patients With Chronic Kidney Disease and Resistant Hypertension.. Hypertension."
  },
  {
-  "id": 41,
+  "id": 39,
   "group": "era",
   "authors": "Han L, Li S, Liao J, Yin Q, He C, Wang Y, et al.",
   "title": "Disproportionality analysis of adverse events associated with endothelin receptor antagonists based on the FDA adverse event reporting system (FAERS).",
@@ -656,7 +624,7 @@ window.ATLAS_REFS = [
   "short": "Han L et al. (2026). Disproportionality analysis of adverse events associated with endothelin receptor antagonists based on the FDA adverse event reporting system (FAERS).. Front Cardiovasc Med."
  },
  {
-  "id": 42,
+  "id": 40,
   "group": "era",
   "authors": "Goldman CK, Goldman JM.",
   "title": "Endothelin Receptor Antagonists in Resistant Hypertension and Proteinuric Kidney Disease: Receptor Strategy and Volume Management.",
@@ -672,7 +640,7 @@ window.ATLAS_REFS = [
   "short": "Goldman CK et al. (2026). Endothelin Receptor Antagonists in Resistant Hypertension and Proteinuric Kidney Disease: Receptor Strategy and Volume Management.. J Clin Hypertens (Greenwich)."
  },
  {
-  "id": 43,
+  "id": 41,
   "group": "era",
   "authors": "Cole A, Kiełbowski K, Dach A, Szulc J, Bakinowska E, Pawlik A.",
   "title": "Endothelin as a Treatment Target in Cardiovascular Diseases: A Recent Step Forward.",
@@ -688,7 +656,7 @@ window.ATLAS_REFS = [
   "short": "Cole A et al. (2025). Endothelin as a Treatment Target in Cardiovascular Diseases: A Recent Step Forward.. Rev Cardiovasc Med."
  },
  {
-  "id": 44,
+  "id": 42,
   "group": "era",
   "authors": "Correa LMA, Silva YRD, Zanella J, de Santana GC.",
   "title": "Aprocitentan in resistant hypertension with chronic kidney disease: balancing albuminuria reduction against early volume risk.",
@@ -704,7 +672,7 @@ window.ATLAS_REFS = [
   "short": "Correa LMA et al. (2026). Aprocitentan in resistant hypertension with chronic kidney disease: balancing albuminuria reduction against early volume risk.. J Hum Hypertens."
  },
  {
-  "id": 45,
+  "id": 43,
   "group": "era",
   "authors": "Valdes PO, Pickard B, Orakwue C, Ferdinand K.",
   "title": "Aprocitentan: An oral, once-daily antihypertensive therapy for resistant hypertension in adult patients.",
