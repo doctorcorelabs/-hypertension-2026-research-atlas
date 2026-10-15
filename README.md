@@ -1,4 +1,4 @@
-# SIGNAL / ATLAS
+# SIGNAL / COMPENDIUM
 
 An English-language, standalone visual companion to the Comparative Safety in Resistant Hypertension FAERS research project. The site is references-first: a numbered Vancouver-style reference list (43 entries) opens the content, and factual statements carry inline citation markers.
 

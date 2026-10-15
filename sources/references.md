@@ -1,6 +1,6 @@
 # References
 
-Numbered reference list for the SIGNAL / ATLAS research website.
+Numbered reference list for the SIGNAL / COMPENDIUM research website.
 Vancouver style. Sources are peer-reviewed or regulatory, 2016-2026, except seminal methods papers (flagged).
 
 ## A. Data sources and terminology
