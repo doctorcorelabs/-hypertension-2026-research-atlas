@@ -94,7 +94,7 @@
     const rows=[['Therapy','Endpoint','Cases','ROR','CI lower','CI upper','PRR','IC025','FDR q','Source','Sentinel','Refs','Interpretation'],...filteredSignals().map(s=>[drug(s.drug).name,s.label,s.cases,s.ror,s.lo,s.hi,s.prr,s.ic,s.q,s.source,s.sentinel,(s.refs||[]).join(';'),'As reported; not incidence or causality; global denominators inconsistent'])];
     const csv='\uFEFF'+rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\r\n');
     const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
-    const a=document.createElement('a');a.href=url;a.download='signal-atlas-reported-estimates.csv';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    const a=document.createElement('a');a.href=url;a.download='signal-compendium-reported-estimates.csv';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
   });
   renderSignals();
 
