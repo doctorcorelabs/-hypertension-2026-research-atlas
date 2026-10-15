@@ -128,16 +128,6 @@
   $('weibull-plot').innerHTML=`<svg viewBox="0 0 550 235" role="img" aria-label="Conceptual normalized Weibull hazard shapes, decreasing for beta below one, constant for beta one, increasing for beta 1.432. Not patient incidence."><path d="M45 28V180H520" fill="none" stroke="#586650"/>${[60,100,140].map(y=>`<line x1="45" x2="520" y1="${y}" y2="${y}" stroke="#303c2e" stroke-dasharray="2 5"/>`).join('')}${curves.map(c=>{const points=Array.from({length:100},(_,i)=>{const t=.12+i/99*2.88;const x=45+(t-.12)/2.88*475;const y=180-Math.pow(t,c.beta-1)*65;return `${i===0?'M':'L'}${x.toFixed(2)} ${y.toFixed(2)}`;}).join(' ');return `<path d="${points}" fill="none" stroke="${c.color}" stroke-width="2"/>`;}).join('')}<text x="45" y="15" fill="#a6b0a5" font-size="9" font-family="monospace">NORMALIZED HAZARD / ARBITRARY UNITS</text><text x="520" y="199" text-anchor="end" fill="#a6b0a5" font-size="9" font-family="monospace">ELAPSED TIME →</text>${curves.map((c,i)=>`<circle cx="${50+i*170}" cy="223" r="3" fill="${c.color}"/><text x="${59+i*170}" y="226" fill="${c.color}" font-size="9" font-family="monospace">${escape(c.name)}</text>`).join('')}</svg>`;
 
   $('integrity-list').innerHTML=D.caveats.map(c=>`<li>${escape(c)}</li>`).join('');
-  const dialog=$('figure-dialog');
-  document.querySelectorAll('[data-image]').forEach(button=>button.addEventListener('click',()=>{
-    $('figure-dialog-title').textContent=button.dataset.title;
-    $('dialog-img').src=button.dataset.image;$('dialog-img').alt=button.dataset.title;
-    $('download-figure').href=button.dataset.image;dialog.showModal();
-    document.body.style.overflow='hidden';
-  }));
-  $('close-figure').addEventListener('click',()=>dialog.close());
-  dialog.addEventListener('close',()=>{document.body.style.overflow='';});
-  dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
   const toggle=document.querySelector('.menu-toggle');
   toggle.addEventListener('click',()=>{const expanded=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',!expanded);$('navigation').classList.toggle('open',!expanded);});
   $('navigation').querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{$('navigation').classList.remove('open');toggle.setAttribute('aria-expanded','false');}));
@@ -146,7 +136,7 @@
   if('IntersectionObserver' in window){
     if(!motionReduced){
       const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target);}}),{threshold:.08});
-      document.querySelectorAll('.finding,.section-heading,.intro-grid,.flow-layout,.library-docs').forEach(el=>{el.classList.add('reveal');revealObserver.observe(el);});
+      document.querySelectorAll('.finding,.section-heading,.intro-grid,.flow-layout').forEach(el=>{el.classList.add('reveal');revealObserver.observe(el);});
     }
     const navObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){document.querySelectorAll('#navigation a').forEach(a=>a.classList.toggle('active',a.hash===`#${entry.target.id}`));}}),{rootMargin:'-15% 0px -55% 0px'});
     ['references','overview','pathways','signals','timing'].forEach(id=>navObserver.observe($(id)));
