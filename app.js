@@ -31,7 +31,7 @@
   }
 
   // The pathway diagram is conceptual; only the cohort bar uses quantitative widths.
-  $('drug-tabs').innerHTML = D.drugs.map(d => `<button id="tab-${d.id}" role="tab" type="button" aria-selected="${d.id==='fin'}" aria-controls="pathway-panel" tabindex="${d.id==='fin'?0:-1}" style="--drug-color:${d.color}" data-drug="${d.id}"><i class="drug-dot"></i>${escape(d.short)}${d.id==='apro'?' †':''}</button>`).join('');
+  $('drug-tabs').innerHTML = D.drugs.map(d => `<button id="tab-${d.id}" role="tab" type="button" aria-selected="${d.id==='fin'}" aria-controls="pathway-panel" tabindex="${d.id==='fin'?0:-1}" style="--drug-color:${d.color}" data-drug="${d.id}"><i class="drug-dot"></i>${escape(d.short)}${d.id==='apro'?' *':''}</button>`).join('');
   function renderPathway(id) {
     state.activeDrug = id;
     const d = drug(id);
@@ -57,9 +57,9 @@
   renderPathway('fin');
   const remainder = D.funnel.unique - D.drugs.reduce((sum,d) => sum+d.n,0);
   $('cohort-bar').innerHTML = D.drugs.map(d => `<span style="width:${d.n/D.funnel.unique*100}%;background:${d.color}" title="${escape(d.name)}: ${num(d.n)} reports"></span>`).join('') + `<span style="width:${remainder/D.funnel.unique*100}%;background:#56634e" title="Arithmetic remainder: ${num(remainder)}"></span>`;
-  $('cohort-legend').innerHTML = D.drugs.map(d => `<span style="--drug-color:${d.color}"><i class="drug-dot"></i>${escape(d.short)}${d.id==='apro'?' †':''}<b>${num(d.n)}</b></span>`).join('') + `<span style="--drug-color:#77816c"><i class="drug-dot"></i>Remainder<b>${num(remainder)}</b></span>`;
+  $('cohort-legend').innerHTML = D.drugs.map(d => `<span style="--drug-color:${d.color}"><i class="drug-dot"></i>${escape(d.short)}${d.id==='apro'?' *':''}<b>${num(d.n)}</b></span>`).join('') + `<span style="--drug-color:#77816c"><i class="drug-dot"></i>Remainder<b>${num(remainder)}</b></span>`;
 
-  $('drug-filter').insertAdjacentHTML('beforeend',D.drugs.map(d => `<option value="${d.id}">${escape(d.name)}${d.id==='apro'?' †':''}</option>`).join(''));
+  $('drug-filter').insertAdjacentHTML('beforeend',D.drugs.map(d => `<option value="${d.id}">${escape(d.name)}${d.id==='apro'?' *':''}</option>`).join(''));
   function filteredSignals() {
     return D.signals.filter(s => ($('drug-filter').value==='all'||s.drug===$('drug-filter').value)&&($('endpoint-filter').value==='all'||s.endpoint===$('endpoint-filter').value)&&(!$('abstract-only').checked||s.source==='abstract'));
   }
@@ -79,8 +79,8 @@
     if(!list.some(s=>signalKey(s)===state.selectedSignal)) state.selectedSignal=list[0]?signalKey(list[0]):null;
     $('signal-count').textContent=`${list.length} ESTIMATES`;
     $('export-csv').disabled=list.length===0;
-    $('forest-plot').innerHTML=list.length?`<div class="forest-head"><span>THERAPY / ENDPOINT</span><span>LOWER ← REPORTING ODDS → HIGHER</span><span>ROR / 95% CI</span></div>${list.map(s=>`<button type="button" class="forest-row ${signalKey(s)===state.selectedSignal?'selected':''}" data-signal="${signalKey(s)}" aria-pressed="${signalKey(s)===state.selectedSignal}" aria-label="${escape(drug(s.drug).name)}, ${escape(s.label)}, ROR ${s.ror}, 95 percent CI ${s.lo} to ${s.hi}${s.sentinel?', exploratory sentinel':''}"><span class="forest-name"><strong>${escape(drug(s.drug).short)}${s.sentinel?' †':''}</strong><small>${escape(endpointNames[s.endpoint])}</small></span>${svgInterval(s,plotColors[s.drug],globalScale,gridTicks)}<span class="forest-value">${decimal(s.ror)}<small>${decimal(s.lo)}–${decimal(s.hi)}</small></span></button>`).join('')}<div class="forest-axis"><span>LOGARITHMIC SCALE</span>${axisTicks(gridTicks,globalScale)}<span>REFERENCE = 1</span></div>`:'<p class="empty-chart">No reported estimates match these filters. Select all therapies or disable the abstract-only filter.</p>';
-    $('signal-table').innerHTML=list.map(s=>`<tr><td>${escape(drug(s.drug).name)}${s.sentinel?' †':''}</td><td>${escape(s.label)}</td><td>${s.cases}</td><td>${decimal(s.ror)} (${decimal(s.lo)}–${decimal(s.hi)})</td><td>${decimal(s.prr)}</td><td>${decimal(s.ic)}</td><td>${escape(s.q)}</td><td>${s.source}${s.sentinel?' · sentinel':''}</td><td class="refs-cell">${citeMarker(s.refs)}</td></tr>`).join('');
+    $('forest-plot').innerHTML=list.length?`<div class="forest-head"><span>THERAPY / ENDPOINT</span><span>LOWER ← REPORTING ODDS → HIGHER</span><span>ROR / 95% CI</span></div>${list.map(s=>`<button type="button" class="forest-row ${signalKey(s)===state.selectedSignal?'selected':''}" data-signal="${signalKey(s)}" aria-pressed="${signalKey(s)===state.selectedSignal}" aria-label="${escape(drug(s.drug).name)}, ${escape(s.label)}, ROR ${s.ror}, 95 percent CI ${s.lo} to ${s.hi}${s.sentinel?', exploratory sentinel':''}"><span class="forest-name"><strong>${escape(drug(s.drug).short)}${s.sentinel?' *':''}</strong><small>${escape(endpointNames[s.endpoint])}</small></span>${svgInterval(s,plotColors[s.drug],globalScale,gridTicks)}<span class="forest-value">${decimal(s.ror)}<small>${decimal(s.lo)}–${decimal(s.hi)}</small></span></button>`).join('')}<div class="forest-axis"><span>LOGARITHMIC SCALE</span>${axisTicks(gridTicks,globalScale)}<span>REFERENCE = 1</span></div>`:'<p class="empty-chart">No reported estimates match these filters. Select all therapies or disable the abstract-only filter.</p>';
+    $('signal-table').innerHTML=list.map(s=>`<tr><td>${escape(drug(s.drug).name)}${s.sentinel?' *':''}</td><td>${escape(s.label)}</td><td>${s.cases}</td><td>${decimal(s.ror)} (${decimal(s.lo)}–${decimal(s.hi)})</td><td>${decimal(s.prr)}</td><td>${decimal(s.ic)}</td><td>${escape(s.q)}</td><td>${s.source}${s.sentinel?' · sentinel':''}</td><td class="refs-cell">${citeMarker(s.refs)}</td></tr>`).join('');
     renderSignalDetail(list.find(s=>signalKey(s)===state.selectedSignal));
   }
   ['drug-filter','endpoint-filter','abstract-only'].forEach(id=>$(id).addEventListener('change',renderSignals));
@@ -110,7 +110,7 @@
     $('onset-timeline').innerHTML=D.onset.map((o,i)=>{
       const d=drug(o.drug),range=o.ci||o.iqr;
       const scale=v=>6+v/365*288;
-      return `<button type="button" class="timeline-row ${i===state.selectedOnset?'selected':''}" data-onset="${i}" aria-pressed="${i===state.selectedOnset}" aria-label="${escape(d.name)}, ${escape(endpointNames[o.endpoint])}, median onset ${o.median} days, ${o.n} dated reports${o.drug==='apro'?', exploratory':''}"><span class="timeline-label">${escape(d.short)}${o.drug==='apro'?' †':''}<small>${escape(endpointNames[o.endpoint])}</small></span><svg viewBox="0 0 300 28" preserveAspectRatio="none" aria-hidden="true">${[0,90,180,270,365].map(t=>`<line x1="${scale(t)}" x2="${scale(t)}" y1="0" y2="28" stroke="#3d4a38" stroke-width=".7"/>`).join('')}${range?`<line x1="${scale(range[0])}" x2="${scale(range[1])}" y1="14" y2="14" stroke="${d.color}" stroke-width="2" ${o.drug==='apro'?'stroke-dasharray="3 3"':''}/>`:''}<circle cx="${scale(o.median)}" cy="14" r="4" fill="${o.drug==='apro'?'#19211c':d.color}" stroke="${d.color}" stroke-width="1.5"/></svg><strong style="color:${d.color}">${o.median}</strong></button>`;
+      return `<button type="button" class="timeline-row ${i===state.selectedOnset?'selected':''}" data-onset="${i}" aria-pressed="${i===state.selectedOnset}" aria-label="${escape(d.name)}, ${escape(endpointNames[o.endpoint])}, median onset ${o.median} days, ${o.n} dated reports${o.drug==='apro'?', exploratory':''}"><span class="timeline-label">${escape(d.short)}${o.drug==='apro'?' *':''}<small>${escape(endpointNames[o.endpoint])}</small></span><svg viewBox="0 0 300 28" preserveAspectRatio="none" aria-hidden="true">${[0,90,180,270,365].map(t=>`<line x1="${scale(t)}" x2="${scale(t)}" y1="0" y2="28" stroke="#3d4a38" stroke-width=".7"/>`).join('')}${range?`<line x1="${scale(range[0])}" x2="${scale(range[1])}" y1="14" y2="14" stroke="${d.color}" stroke-width="2" ${o.drug==='apro'?'stroke-dasharray="3 3"':''}/>`:''}<circle cx="${scale(o.median)}" cy="14" r="4" fill="${o.drug==='apro'?'#19211c':d.color}" stroke="${d.color}" stroke-width="1.5"/></svg><strong style="color:${d.color}">${o.median}</strong></button>`;
     }).join('')+`<div class="timeline-axis"><span></span>${axisTicks([0,90,180,270,365],v=>v/365*100)}<span></span></div>`;
     renderOnsetDetail();
   }
@@ -162,7 +162,6 @@
   window.addEventListener('resize',updateProgress);updateProgress();
 
   // ---- Citation tooltips, click-highlight, and backlinks ----
-  const SECTION_NAMES = {references:'References',overview:'The study',methods:'Methods',pathways:'Pathways',signals:'Signals',compare:'Comparisons',timing:'Time to onset',limitations:'Limitations',library:'Library'};
   const tooltip = $('cite-tooltip');
   let tooltipFor = null;
   function tooltipHTML(ids) {
@@ -219,34 +218,4 @@
       }
     });
   });
-  // Backlinks: map each reference id to the sections that cite it.
-  // Static markers are scanned from the DOM; dynamic-panel markers are mapped
-  // from the data layer so tab/filter switches do not change the backlinks.
-  (function buildBacklinks() {
-    const citedIn = {};
-    const add = (id, secId) => {
-      citedIn[id] = citedIn[id] || new Set();
-      if(secId) citedIn[id].add(secId);
-    };
-    document.querySelectorAll('a.cite[data-refs]').forEach(a => {
-      const section = a.closest('section[id]');
-      const secId = section ? section.id : null;
-      (a.dataset.refs || '').split(',').map(s => Number(s)).filter(Boolean).forEach(id => add(id, secId));
-    });
-    D.drugs.forEach(d => { if(d.refs) Object.values(d.refs).flat().forEach(id => add(id, 'pathways')); });
-    D.signals.forEach(s => { (s.refs || []).forEach(id => add(id, 'signals')); });
-    D.comparisons.forEach(c => { (c.refs || []).forEach(id => add(id, 'compare')); });
-    D.onset.forEach(o => { (o.refs || []).forEach(id => add(id, 'timing')); });
-    REFS.forEach(r => {
-      const li = document.getElementById('ref-' + r.id);
-      if(!li) return;
-      const secs = citedIn[r.id];
-      const chip = document.createElement('span');
-      chip.className = 'cited-in' + (secs && secs.size ? '' : ' context-only');
-      chip.textContent = secs && secs.size
-        ? 'Cited in: ' + [...secs].map(s => SECTION_NAMES[s] || s).join(', ')
-        : 'Context only';
-      li.appendChild(chip);
-    });
-  })();
 })();

@@ -20,7 +20,7 @@ window.ATLAS_DATA = {
       female: 34.3,
       serious: 23.9,
       axis: 'Potassium',
-      refs: { mechanism: [19, 26], interpretation: [1, 2], caution: [19] }
+      refs: { mechanism: [17, 24], interpretation: [], caution: [17] }
     },
     {
       id: 'spiro',
@@ -36,7 +36,7 @@ window.ATLAS_DATA = {
       female: 50.4,
       serious: 66.7,
       axis: 'Hormones',
-      refs: { mechanism: [28], interpretation: [1, 2], caution: [] }
+      refs: { mechanism: [26], interpretation: [], caution: [] }
     },
     {
       id: 'eple',
@@ -52,7 +52,7 @@ window.ATLAS_DATA = {
       female: 32.6,
       serious: 56.5,
       axis: 'Potassium',
-      refs: { mechanism: [28], interpretation: [1, 2], caution: [] }
+      refs: { mechanism: [26], interpretation: [], caution: [] }
     },
     {
       id: 'arni',
@@ -68,7 +68,7 @@ window.ATLAS_DATA = {
       female: 29.2,
       serious: 27.6,
       axis: 'Perfusion',
-      refs: { mechanism: [32, 35], interpretation: [1, 2], caution: [32] }
+      refs: { mechanism: [30, 33], interpretation: [], caution: [30] }
     },
     {
       id: 'apro',
@@ -84,46 +84,46 @@ window.ATLAS_DATA = {
       female: 41.2,
       serious: 23.5,
       axis: 'Fluid',
-      refs: { mechanism: [39, 43], interpretation: [2, 39], caution: [] }
+      refs: { mechanism: [37, 41], interpretation: [37], caution: [] }
     }
   ],
   signals: [
-    { drug: 'fin', endpoint: 'potassium', label: 'Hyperkalemia', ror: 5.47, lo: 4.51, hi: 6.62, cases: 291, prr: 4.67, ic: 1.08, q: '< 0.001', source: 'manuscript', sentinel: false , refs: [1] },
-    { drug: 'fin', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic disorders', ror: 1.03, lo: 0.54, hi: 1.99, cases: 12, prr: 1.03, ic: -0.84, q: '1.000', source: 'abstract', sentinel: false , refs: [2] },
-    { drug: 'fin', endpoint: 'pressure', label: 'Hypotension/hemodynamic disturbance', ror: 0.41, lo: 0.32, hi: 0.53, cases: 72, prr: 0.44, ic: -1.34, q: '< 0.001', source: 'manuscript', sentinel: false , refs: [1] },
-    { drug: 'fin', endpoint: 'edema', label: 'Peripheral edema/fluid retention', ror: 0.34, lo: 0.24, hi: 0.47, cases: 40, prr: 0.36, ic: -1.71, q: '< 0.001', source: 'manuscript', sentinel: false , refs: [1] },
-    { drug: 'fin', endpoint: 'renal', label: 'Renal function impairment', ror: 4.60, lo: 3.92, hi: 5.39, cases: 396, prr: 3.73, ic: 0.97, q: '< 0.001', source: 'manuscript', sentinel: false , refs: [1] },
-    { drug: 'spiro', endpoint: 'potassium', label: 'Hyperkalemia', ror: 4.53, lo: 3.35, hi: 6.12, cases: 62, prr: 3.68, ic: 1.32, q: '< 0.001', source: 'abstract', sentinel: false , refs: [2] },
-    { drug: 'spiro', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic disorders', ror: 10.85, lo: 5.75, hi: 20.48, cases: 14, prr: 10.31, ic: 2.08, q: '< 0.001', source: 'abstract', sentinel: false , refs: [2, 28] },
-    { drug: 'spiro', endpoint: 'pressure', label: 'Hypotension/hemodynamic disturbance', ror: 1.63, lo: 1.13, hi: 2.36, cases: 34, prr: 1.55, ic: 0.09, q: '0.026', source: 'manuscript', sentinel: false , refs: [1] },
-    { drug: 'spiro', endpoint: 'edema', label: 'Peripheral edema/fluid retention', ror: 0.93, lo: 0.54, hi: 1.61, cases: 14, prr: 0.94, ic: -0.83, q: '1.000', source: 'manuscript', sentinel: false , refs: [1] },
-    { drug: 'eple', endpoint: 'potassium', label: 'Hyperkalemia', ror: 1.58, lo: 1.11, hi: 2.25, cases: 37, prr: 1.52, ic: 0.08, q: '0.026', source: 'manuscript', sentinel: false , refs: [1] },
-    { drug: 'eple', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic disorders', ror: 3.18, lo: 1.42, hi: 7.14, cases: 7, prr: 3.14, ic: 0.45, q: '0.023', source: 'manuscript', sentinel: false , refs: [1] },
-    { drug: 'eple', endpoint: 'pressure', label: 'Hypotension/hemodynamic disturbance', ror: 0.96, lo: 0.65, hi: 1.41, cases: 29, prr: 0.96, ic: -0.59, q: '1.000', source: 'manuscript', sentinel: false , refs: [1] },
-    { drug: 'arni', endpoint: 'potassium', label: 'Hyperkalemia', ror: 0.50, lo: 0.36, hi: 0.69, cases: 43, prr: 0.52, ic: -1.27, q: '< 0.001', source: 'manuscript', sentinel: false , refs: [1] },
-    { drug: 'arni', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic disorders', ror: 0.48, lo: 0.17, hi: 1.35, cases: 4, prr: 0.49, ic: -2.18, q: '0.383', source: 'manuscript', sentinel: false , refs: [1] },
-    { drug: 'arni', endpoint: 'pressure', label: 'Hypotension/hemodynamic disturbance', ror: 6.06, lo: 5.06, hi: 7.24, cases: 275, prr: 4.75, ic: 1.35, q: '< 0.001', source: 'abstract', sentinel: false , refs: [2, 32] },
-    { drug: 'arni', endpoint: 'angioedema', label: 'Angioedema', ror: 3.33, lo: 2.05, hi: 5.40, cases: 27, prr: 3.27, ic: 0.63, q: '< 0.001', source: 'abstract', sentinel: false , refs: [2, 35] },
-    { drug: 'apro', endpoint: 'edema', label: 'Peripheral edema/fluid retention', ror: 9.00, lo: 3.31, hi: 24.46, cases: 6, prr: 6.18, ic: 1.34, q: '< 0.001', source: 'abstract', sentinel: true , refs: [2, 39] },
-    { drug: 'apro', endpoint: 'potassium', label: 'Hyperkalemia', ror: 0.38, lo: 0.02, hi: 6.30, cases: 0, prr: 0.40, ic: -5.43, q: '0.821', source: 'manuscript', sentinel: true , refs: [1] },
-    { drug: 'apro', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic disorders', ror: 4.08, lo: 0.24, hi: 68.86, cases: 0, prr: 3.99, ic: -2.14, q: '1.000', source: 'manuscript', sentinel: true , refs: [1] }
+    { drug: 'fin', endpoint: 'potassium', label: 'Hyperkalemia', ror: 5.47, lo: 4.51, hi: 6.62, cases: 291, prr: 4.67, ic: 1.08, q: '< 0.001', source: 'manuscript', sentinel: false , refs: [] },
+    { drug: 'fin', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic disorders', ror: 1.03, lo: 0.54, hi: 1.99, cases: 12, prr: 1.03, ic: -0.84, q: '1.000', source: 'abstract', sentinel: false , refs: [] },
+    { drug: 'fin', endpoint: 'pressure', label: 'Hypotension/hemodynamic disturbance', ror: 0.41, lo: 0.32, hi: 0.53, cases: 72, prr: 0.44, ic: -1.34, q: '< 0.001', source: 'manuscript', sentinel: false , refs: [] },
+    { drug: 'fin', endpoint: 'edema', label: 'Peripheral edema/fluid retention', ror: 0.34, lo: 0.24, hi: 0.47, cases: 40, prr: 0.36, ic: -1.71, q: '< 0.001', source: 'manuscript', sentinel: false , refs: [] },
+    { drug: 'fin', endpoint: 'renal', label: 'Renal function impairment', ror: 4.60, lo: 3.92, hi: 5.39, cases: 396, prr: 3.73, ic: 0.97, q: '< 0.001', source: 'manuscript', sentinel: false , refs: [] },
+    { drug: 'spiro', endpoint: 'potassium', label: 'Hyperkalemia', ror: 4.53, lo: 3.35, hi: 6.12, cases: 62, prr: 3.68, ic: 1.32, q: '< 0.001', source: 'abstract', sentinel: false , refs: [] },
+    { drug: 'spiro', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic disorders', ror: 10.85, lo: 5.75, hi: 20.48, cases: 14, prr: 10.31, ic: 2.08, q: '< 0.001', source: 'abstract', sentinel: false , refs: [26] },
+    { drug: 'spiro', endpoint: 'pressure', label: 'Hypotension/hemodynamic disturbance', ror: 1.63, lo: 1.13, hi: 2.36, cases: 34, prr: 1.55, ic: 0.09, q: '0.026', source: 'manuscript', sentinel: false , refs: [] },
+    { drug: 'spiro', endpoint: 'edema', label: 'Peripheral edema/fluid retention', ror: 0.93, lo: 0.54, hi: 1.61, cases: 14, prr: 0.94, ic: -0.83, q: '1.000', source: 'manuscript', sentinel: false , refs: [] },
+    { drug: 'eple', endpoint: 'potassium', label: 'Hyperkalemia', ror: 1.58, lo: 1.11, hi: 2.25, cases: 37, prr: 1.52, ic: 0.08, q: '0.026', source: 'manuscript', sentinel: false , refs: [] },
+    { drug: 'eple', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic disorders', ror: 3.18, lo: 1.42, hi: 7.14, cases: 7, prr: 3.14, ic: 0.45, q: '0.023', source: 'manuscript', sentinel: false , refs: [] },
+    { drug: 'eple', endpoint: 'pressure', label: 'Hypotension/hemodynamic disturbance', ror: 0.96, lo: 0.65, hi: 1.41, cases: 29, prr: 0.96, ic: -0.59, q: '1.000', source: 'manuscript', sentinel: false , refs: [] },
+    { drug: 'arni', endpoint: 'potassium', label: 'Hyperkalemia', ror: 0.50, lo: 0.36, hi: 0.69, cases: 43, prr: 0.52, ic: -1.27, q: '< 0.001', source: 'manuscript', sentinel: false , refs: [] },
+    { drug: 'arni', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic disorders', ror: 0.48, lo: 0.17, hi: 1.35, cases: 4, prr: 0.49, ic: -2.18, q: '0.383', source: 'manuscript', sentinel: false , refs: [] },
+    { drug: 'arni', endpoint: 'pressure', label: 'Hypotension/hemodynamic disturbance', ror: 6.06, lo: 5.06, hi: 7.24, cases: 275, prr: 4.75, ic: 1.35, q: '< 0.001', source: 'abstract', sentinel: false , refs: [30] },
+    { drug: 'arni', endpoint: 'angioedema', label: 'Angioedema', ror: 3.33, lo: 2.05, hi: 5.40, cases: 27, prr: 3.27, ic: 0.63, q: '< 0.001', source: 'abstract', sentinel: false , refs: [33] },
+    { drug: 'apro', endpoint: 'edema', label: 'Peripheral edema/fluid retention', ror: 9.00, lo: 3.31, hi: 24.46, cases: 6, prr: 6.18, ic: 1.34, q: '< 0.001', source: 'abstract', sentinel: true , refs: [37] },
+    { drug: 'apro', endpoint: 'potassium', label: 'Hyperkalemia', ror: 0.38, lo: 0.02, hi: 6.30, cases: 0, prr: 0.40, ic: -5.43, q: '0.821', source: 'manuscript', sentinel: true , refs: [] },
+    { drug: 'apro', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic disorders', ror: 4.08, lo: 0.24, hi: 68.86, cases: 0, prr: 3.99, ic: -2.14, q: '1.000', source: 'manuscript', sentinel: true , refs: [] }
   ],
   comparisons: [
-    { target: 'fin', comparator: 'spiro', endpoint: 'potassium', label: 'Hyperkalemia reporting odds', ror: 0.68, lo: 0.50, hi: 0.93, p: '0.017', source: 'abstract' , refs: [2] },
-    { target: 'fin', comparator: 'spiro', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic reporting odds', ror: 0.13, lo: 0.06, hi: 0.28, p: '< 0.001', source: 'manuscript' , refs: [1] },
-    { target: 'fin', comparator: 'spiro', endpoint: 'pressure', label: 'Hypotension/hemodynamic reporting odds', ror: 0.30, lo: 0.20, hi: 0.47, p: '< 0.001', source: 'manuscript' , refs: [1] },
-    { target: 'fin', comparator: 'eple', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic reporting odds', ror: 0.36, lo: 0.14, hi: 0.92, p: null, source: 'manuscript' , refs: [1] },
-    { target: 'fin', comparator: 'arni', endpoint: 'pressure', label: 'Hypotension/hemodynamic reporting odds', ror: 0.13, lo: 0.10, hi: 0.17, p: '< 0.001', source: 'manuscript' , refs: [1] },
-    { target: 'fin', comparator: 'arni', endpoint: 'angioedema', label: 'Angioedema reporting odds', ror: 0.21, lo: 0.10, hi: 0.45, p: null, source: 'manuscript' , refs: [1] },
-    { target: 'spiro', comparator: 'eple', endpoint: 'potassium', label: 'Hyperkalemia reporting odds', ror: 2.65, lo: 1.70, hi: 4.14, p: '< 0.001', source: 'manuscript' , refs: [1] },
-    { target: 'spiro', comparator: 'eple', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic reporting odds', ror: 2.79, lo: 1.11, hi: 7.01, p: '0.029', source: 'manuscript' , refs: [1] }
+    { target: 'fin', comparator: 'spiro', endpoint: 'potassium', label: 'Hyperkalemia reporting odds', ror: 0.68, lo: 0.50, hi: 0.93, p: '0.017', source: 'abstract' , refs: [] },
+    { target: 'fin', comparator: 'spiro', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic reporting odds', ror: 0.13, lo: 0.06, hi: 0.28, p: '< 0.001', source: 'manuscript' , refs: [] },
+    { target: 'fin', comparator: 'spiro', endpoint: 'pressure', label: 'Hypotension/hemodynamic reporting odds', ror: 0.30, lo: 0.20, hi: 0.47, p: '< 0.001', source: 'manuscript' , refs: [] },
+    { target: 'fin', comparator: 'eple', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic reporting odds', ror: 0.36, lo: 0.14, hi: 0.92, p: null, source: 'manuscript' , refs: [] },
+    { target: 'fin', comparator: 'arni', endpoint: 'pressure', label: 'Hypotension/hemodynamic reporting odds', ror: 0.13, lo: 0.10, hi: 0.17, p: '< 0.001', source: 'manuscript' , refs: [] },
+    { target: 'fin', comparator: 'arni', endpoint: 'angioedema', label: 'Angioedema reporting odds', ror: 0.21, lo: 0.10, hi: 0.45, p: null, source: 'manuscript' , refs: [] },
+    { target: 'spiro', comparator: 'eple', endpoint: 'potassium', label: 'Hyperkalemia reporting odds', ror: 2.65, lo: 1.70, hi: 4.14, p: '< 0.001', source: 'manuscript' , refs: [] },
+    { target: 'spiro', comparator: 'eple', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic reporting odds', ror: 2.79, lo: 1.11, hi: 7.01, p: '0.029', source: 'manuscript' , refs: [] }
   ],
   onset: [
-    { drug: 'fin', endpoint: 'potassium', label: 'Hyperkalemia', median: 95, iqr: [55, 148], ci: [67, 120], n: 57, total: 291, beta: 1.432, alpha: 125.2 , refs: [1, 11] },
-    { drug: 'spiro', endpoint: 'potassium', label: 'Hyperkalemia', median: 91, iqr: null, ci: [55.5, 239], n: 12, total: 62, beta: 1.416, alpha: 161.2 , refs: [1, 11] },
-    { drug: 'spiro', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic disorders', median: 123, iqr: null, ci: [78, 363], n: 5, total: 14, beta: 1.864, alpha: 199.5 , refs: [1, 11] },
-    { drug: 'arni', endpoint: 'pressure', label: 'Hypotension/hemodynamic disturbance', median: 68, iqr: [24, 123.5], ci: [41, 79], n: 135, total: 275, beta: 1.171, alpha: 86.8 , refs: [1, 11] },
-    { drug: 'apro', endpoint: 'edema', label: 'Peripheral edema/fluid retention', median: 152, iqr: [100.5, 212.5], ci: null, n: 3, total: 6, beta: null, alpha: null , refs: [1] }
+    { drug: 'fin', endpoint: 'potassium', label: 'Hyperkalemia', median: 95, iqr: [55, 148], ci: [67, 120], n: 57, total: 291, beta: 1.432, alpha: 125.2 , refs: [9] },
+    { drug: 'spiro', endpoint: 'potassium', label: 'Hyperkalemia', median: 91, iqr: null, ci: [55.5, 239], n: 12, total: 62, beta: 1.416, alpha: 161.2 , refs: [9] },
+    { drug: 'spiro', endpoint: 'endocrine', label: 'Endocrine/antiandrogenic disorders', median: 123, iqr: null, ci: [78, 363], n: 5, total: 14, beta: 1.864, alpha: 199.5 , refs: [9] },
+    { drug: 'arni', endpoint: 'pressure', label: 'Hypotension/hemodynamic disturbance', median: 68, iqr: [24, 123.5], ci: [41, 79], n: 135, total: 275, beta: 1.171, alpha: 86.8 , refs: [9] },
+    { drug: 'apro', endpoint: 'edema', label: 'Peripheral edema/fluid retention', median: 152, iqr: [100.5, 212.5], ci: null, n: 3, total: 6, beta: null, alpha: null , refs: [] }
   ],
   caveats: [
     'FAERS contains spontaneous safety reports, not an exposed-population denominator. Reporting odds ratios and report percentages do not estimate incidence, absolute risk, treatment efficacy, or causality.',
