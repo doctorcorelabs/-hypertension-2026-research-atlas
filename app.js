@@ -8,6 +8,15 @@
   const drug = id => D.drugs.find(d => d.id === id);
   const plotColors = {fin:'#506c24',spiro:'#a14625',eple:'#7652a3',arni:'#19767e',apro:'#956817'};
   const endpointNames = {potassium:'Hyperkalemia',endocrine:'Endocrine disorders',pressure:'Hypotension / hemodynamics',edema:'Edema / fluid retention',renal:'Renal impairment',angioedema:'Angioedema'};
+  const REFS = window.ATLAS_REFS || [];
+  const refById = id => REFS.find(r => r.id === id);
+  const citeMarker = ids => {
+    if(!ids || !ids.length) return '';
+    const valid = ids.filter(id => refById(id));
+    if(!valid.length) return '';
+    const label = '[' + valid.join(',') + ']';
+    return `<a class="cite" href="#ref-${valid[0]}" data-refs="${valid.join(',')}" aria-label="References ${valid.join(', ')}">${label}</a>`;
+  };
   const state = {activeDrug:'fin',selectedSignal:'spiro-endocrine',selectedOnset:0};
   const signalKey = s => `${s.drug}-${s.endpoint}`;
   const globalScale = value => (Math.log10(value) + 2) / 4 * 100;
@@ -34,7 +43,7 @@
     $('pathway-panel').setAttribute('aria-labelledby',`tab-${id}`);
     $('pathway-panel').style.setProperty('--drug-color',d.color);
     const target = {fin:'MR blockade',spiro:'MR + steroid receptors',eple:'Selective MR blockade',arni:'Neprilysin + AT1',apro:'ETA + ETB blockade'}[id];
-    $('pathway-panel').innerHTML = `<div class="pathway-identity"><p class="eyebrow">${id==='apro'?'SENTINEL / EXPLORATORY':'THERAPY / MECHANISTIC PROFILE'}</p><h3>${escape(d.name)}</h3><p class="pathway-class">${escape(d.className)}</p><div class="pathway-route"><span>${escape(target)}</span><b aria-hidden="true">→</b><span class="route-axis">${escape(d.axis)}</span></div><div class="pathway-stats"><div><strong>${num(d.n)}</strong><span>REPORTS</span></div><div><strong>${d.age.toFixed(1)}</strong><span>MEAN AGE / Y</span></div><div><strong>${d.female.toFixed(1)}%</strong><span>FEMALE REPORTS</span></div></div></div><div class="pathway-reading"><article><h4>01 / PHARMACOLOGICAL RATIONALE</h4><p>${escape(d.mechanism)}</p></article><article><h4>02 / REPORTED SAFETY FOOTPRINT</h4><p>${escape(d.interpretation)}</p></article><article class="caution"><h4>03 / THE IMPORTANT CAVEAT</h4><p>${escape(d.caution)}</p></article></div>`;
+    $('pathway-panel').innerHTML = `<div class="pathway-identity"><p class="eyebrow">${id==='apro'?'SENTINEL / EXPLORATORY':'THERAPY / MECHANISTIC PROFILE'}</p><h3>${escape(d.name)}</h3><p class="pathway-class">${escape(d.className)}</p><div class="pathway-route"><span>${escape(target)}</span><b aria-hidden="true">→</b><span class="route-axis">${escape(d.axis)}</span></div><div class="pathway-stats"><div><strong>${num(d.n)}</strong><span>REPORTS</span></div><div><strong>${d.age.toFixed(1)}</strong><span>MEAN AGE / Y</span></div><div><strong>${d.female.toFixed(1)}%</strong><span>FEMALE REPORTS</span></div></div></div><div class="pathway-reading"><article><h4>01 / PHARMACOLOGICAL RATIONALE</h4><p>${escape(d.mechanism)} ${citeMarker(d.refs && d.refs.mechanism)}</p></article><article><h4>02 / REPORTED SAFETY PATTERN</h4><p>${escape(d.interpretation)} ${citeMarker(d.refs && d.refs.interpretation)}</p></article><article class="caution"><h4>03 / INTERPRETIVE CAVEAT</h4><p>${escape(d.caution)} ${citeMarker(d.refs && d.refs.caution)}</p></article></div>`;
   }
   $('drug-tabs').addEventListener('click', e => {const b = e.target.closest('[data-drug]');if(b) renderPathway(b.dataset.drug);});
   $('drug-tabs').addEventListener('keydown', e => {
@@ -61,17 +70,17 @@
     return 'The reported interval includes 1: no elevated ROR signal by the interval criterion. This does not prove equivalence or demonstrate that the therapy is free of this adverse event.';
   }
   function renderSignalDetail(s) {
-    if(!s){$('signal-detail').innerHTML='<p>No matching estimates. Change a filter to continue exploring.</p>';return;}
+    if(!s){$('signal-detail').innerHTML='<p>No matching estimates. Adjust the filters to review other estimates.</p>';return;}
     const d=drug(s.drug);
-    $('signal-detail').innerHTML=`<div><p class="eyebrow">${s.sentinel?'SENTINEL / EXPLORATORY · ':''}${s.source.toUpperCase()} / REPORTED ESTIMATE</p><h3>${escape(d.name)} · ${escape(s.label)}</h3><p>${escape(signalInterpretation(s))}${s.sentinel?' All aprocitentan findings remain hypothesis-generating.':''}</p></div><div class="signal-metrics"><div><strong>${num(s.cases)}</strong><span>EVENT REPORTS</span></div><div><strong>${s.ic>0?'+':''}${decimal(s.ic)}</strong><span>IC025</span></div><div><strong>${escape(s.q)}</strong><span>FDR Q-VALUE</span></div></div>`;
+    $('signal-detail').innerHTML=`<div><p class="eyebrow">${s.sentinel?'SENTINEL / EXPLORATORY · ':''}${s.source.toUpperCase()} / REPORTED ESTIMATE</p><h3>${escape(d.name)} · ${escape(s.label)}</h3><p>${escape(signalInterpretation(s))}${s.sentinel?' All aprocitentan findings remain hypothesis-generating.':''} ${citeMarker(s.refs)}</p></div><div class="signal-metrics"><div><strong>${num(s.cases)}</strong><span>EVENT REPORTS</span></div><div><strong>${s.ic>0?'+':''}${decimal(s.ic)}</strong><span>IC025</span></div><div><strong>${escape(s.q)}</strong><span>FDR Q-VALUE</span></div></div>`;
   }
   function renderSignals() {
     const list=filteredSignals();
     if(!list.some(s=>signalKey(s)===state.selectedSignal)) state.selectedSignal=list[0]?signalKey(list[0]):null;
     $('signal-count').textContent=`${list.length} ESTIMATES`;
     $('export-csv').disabled=list.length===0;
-    $('forest-plot').innerHTML=list.length?`<div class="forest-head"><span>THERAPY / ENDPOINT</span><span>LOWER ← REPORTING ODDS → HIGHER</span><span>ROR / 95% CI</span></div>${list.map(s=>`<button type="button" class="forest-row ${signalKey(s)===state.selectedSignal?'selected':''}" data-signal="${signalKey(s)}" aria-pressed="${signalKey(s)===state.selectedSignal}" aria-label="${escape(drug(s.drug).name)}, ${escape(s.label)}, ROR ${s.ror}, 95 percent CI ${s.lo} to ${s.hi}${s.sentinel?', exploratory sentinel':''}"><span class="forest-name"><strong>${escape(drug(s.drug).short)}${s.sentinel?' †':''}</strong><small>${escape(endpointNames[s.endpoint])}</small></span>${svgInterval(s,plotColors[s.drug],globalScale,gridTicks)}<span class="forest-value">${decimal(s.ror)}<small>${decimal(s.lo)}–${decimal(s.hi)}</small></span></button>`).join('')}<div class="forest-axis"><span>LOGARITHMIC SCALE</span>${axisTicks(gridTicks,globalScale)}<span>REFERENCE = 1</span></div>`:'<p class="empty-chart">No reported estimates match these filters. Try all therapies or turn off the abstract-only filter.</p>';
-    $('signal-table').innerHTML=list.map(s=>`<tr><td>${escape(drug(s.drug).name)}${s.sentinel?' †':''}</td><td>${escape(s.label)}</td><td>${s.cases}</td><td>${decimal(s.ror)} (${decimal(s.lo)}–${decimal(s.hi)})</td><td>${decimal(s.prr)}</td><td>${decimal(s.ic)}</td><td>${escape(s.q)}</td><td>${s.source}${s.sentinel?' · sentinel':''}</td></tr>`).join('');
+    $('forest-plot').innerHTML=list.length?`<div class="forest-head"><span>THERAPY / ENDPOINT</span><span>LOWER ← REPORTING ODDS → HIGHER</span><span>ROR / 95% CI</span></div>${list.map(s=>`<button type="button" class="forest-row ${signalKey(s)===state.selectedSignal?'selected':''}" data-signal="${signalKey(s)}" aria-pressed="${signalKey(s)===state.selectedSignal}" aria-label="${escape(drug(s.drug).name)}, ${escape(s.label)}, ROR ${s.ror}, 95 percent CI ${s.lo} to ${s.hi}${s.sentinel?', exploratory sentinel':''}"><span class="forest-name"><strong>${escape(drug(s.drug).short)}${s.sentinel?' †':''}</strong><small>${escape(endpointNames[s.endpoint])}</small></span>${svgInterval(s,plotColors[s.drug],globalScale,gridTicks)}<span class="forest-value">${decimal(s.ror)}<small>${decimal(s.lo)}–${decimal(s.hi)}</small></span></button>`).join('')}<div class="forest-axis"><span>LOGARITHMIC SCALE</span>${axisTicks(gridTicks,globalScale)}<span>REFERENCE = 1</span></div>`:'<p class="empty-chart">No reported estimates match these filters. Select all therapies or disable the abstract-only filter.</p>';
+    $('signal-table').innerHTML=list.map(s=>`<tr><td>${escape(drug(s.drug).name)}${s.sentinel?' †':''}</td><td>${escape(s.label)}</td><td>${s.cases}</td><td>${decimal(s.ror)} (${decimal(s.lo)}–${decimal(s.hi)})</td><td>${decimal(s.prr)}</td><td>${decimal(s.ic)}</td><td>${escape(s.q)}</td><td>${s.source}${s.sentinel?' · sentinel':''}</td><td class="refs-cell">${citeMarker(s.refs)}</td></tr>`).join('');
     renderSignalDetail(list.find(s=>signalKey(s)===state.selectedSignal));
   }
   ['drug-filter','endpoint-filter','abstract-only'].forEach(id=>$(id).addEventListener('change',renderSignals));
@@ -82,7 +91,7 @@
     renderSignalDetail(D.signals.find(s=>signalKey(s)===state.selectedSignal));
   });
   $('export-csv').addEventListener('click',()=>{
-    const rows=[['Therapy','Endpoint','Cases','ROR','CI lower','CI upper','PRR','IC025','FDR q','Source','Sentinel','Interpretation'],...filteredSignals().map(s=>[drug(s.drug).name,s.label,s.cases,s.ror,s.lo,s.hi,s.prr,s.ic,s.q,s.source,s.sentinel,'As reported; not incidence or causality; global denominators inconsistent'])];
+    const rows=[['Therapy','Endpoint','Cases','ROR','CI lower','CI upper','PRR','IC025','FDR q','Source','Sentinel','Refs','Interpretation'],...filteredSignals().map(s=>[drug(s.drug).name,s.label,s.cases,s.ror,s.lo,s.hi,s.prr,s.ic,s.q,s.source,s.sentinel,(s.refs||[]).join(';'),'As reported; not incidence or causality; global denominators inconsistent'])];
     const csv='\uFEFF'+rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\r\n');
     const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8;'}));
     const a=document.createElement('a');a.href=url;a.download='signal-atlas-reported-estimates.csv';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
@@ -93,7 +102,7 @@
     const [target,comparator]=$('comparison-select').value.split('-');
     const list=D.comparisons.filter(c=>c.target===target&&c.comparator===comparator);
     $('comparison-header').innerHTML=`<p class="eyebrow">HEAD-TO-HEAD / REPORTED ROR</p><h3>${escape(drug(target).short)} <span>vs</span><br>${escape(drug(comparator).short)}</h3>`;
-    $('comparison-plot').innerHTML=list.map(c=>`<div class="compare-row"><div class="compare-row-heading"><span>${escape(endpointNames[c.endpoint])}</span><strong>${decimal(c.ror)}</strong></div>${svgInterval(c,drug(target).color,compareScale,[0.1,1,10],true)}${axisTicks([0.1,1,10],compareScale)}<p>95% CI ${decimal(c.lo)}–${decimal(c.hi)} · ${c.p?'p '+escape(c.p):'p not specified in source table'} · ${c.source.toUpperCase()}</p></div>`).join('');
+    $('comparison-plot').innerHTML=list.map(c=>`<div class="compare-row"><div class="compare-row-heading"><span>${escape(endpointNames[c.endpoint])}</span><strong>${decimal(c.ror)}</strong></div>${svgInterval(c,drug(target).color,compareScale,[0.1,1,10],true)}${axisTicks([0.1,1,10],compareScale)}<p>95% CI ${decimal(c.lo)}–${decimal(c.hi)} · ${c.p?'p '+escape(c.p):'p not specified in source table'} · ${c.source.toUpperCase()} ${citeMarker(c.refs)}</p></div>`).join('');
   }
   $('comparison-select').addEventListener('change',renderComparison);renderComparison();
 
@@ -109,7 +118,7 @@
     const o=D.onset[state.selectedOnset],d=drug(o.drug);
     $('onset-detail').style.setProperty('--drug-color',d.color);
     const range=o.ci?`${o.ci[0]}–${o.ci[1]} days`:o.iqr?`${o.iqr[0]}–${o.iqr[1]} days`:'Not reported';
-    $('onset-detail').innerHTML=`<p class="eyebrow">${o.drug==='apro'?'EXPLORATORY / ONLY 3 DATED REPORTS':'DATED REPORTS / ONSET PROFILE'}</p><h3>${escape(d.name)}<br>${escape(endpointNames[o.endpoint])}</h3><div class="onset-number">${o.median}<span>DAYS</span></div><p>Median onset among reports with usable dates.</p><p>${num(o.n)} of ${num(o.total)} endpoint reports (${(o.n/o.total*100).toFixed(1)}%) contributed to this estimate.</p><dl><div><dt>${o.ci?'BOOTSTRAP 95% CI':'IQR / NOT A CI'}</dt><dd>${range}</dd></div><div><dt>WEIBULL SHAPE β</dt><dd>${o.beta?o.beta.toFixed(3):'Not fitted'}</dd></div></dl>${o.drug==='apro'?'<p>No Weibull estimate or usable bootstrap CI is presented for this sparse sentinel group.</p>':''}`;
+    $('onset-detail').innerHTML=`<p class="eyebrow">${o.drug==='apro'?'EXPLORATORY / ONLY 3 DATED REPORTS':'DATED REPORTS / ONSET PROFILE'}</p><h3>${escape(d.name)}<br>${escape(endpointNames[o.endpoint])}</h3><div class="onset-number">${o.median}<span>DAYS</span></div><p>Median onset among reports with usable dates. ${citeMarker(o.refs)}</p><p>${num(o.n)} of ${num(o.total)} endpoint reports (${(o.n/o.total*100).toFixed(1)}%) contributed to this estimate.</p><dl><div><dt>${o.ci?'BOOTSTRAP 95% CI':'IQR / NOT A CI'}</dt><dd>${range}</dd></div><div><dt>WEIBULL SHAPE β</dt><dd>${o.beta?o.beta.toFixed(3):'Not fitted'}</dd></div></dl>${o.drug==='apro'?'<p>No Weibull estimate or usable bootstrap CI is presented for this sparse sentinel group.</p>':''}`;
   }
   $('onset-timeline').addEventListener('click',e=>{
     const b=e.target.closest('[data-onset]');if(!b)return;state.selectedOnset=Number(b.dataset.onset);
@@ -140,7 +149,7 @@
       document.querySelectorAll('.finding,.section-heading,.intro-grid,.flow-layout,.library-docs').forEach(el=>{el.classList.add('reveal');revealObserver.observe(el);});
     }
     const navObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){document.querySelectorAll('#navigation a').forEach(a=>a.classList.toggle('active',a.hash===`#${entry.target.id}`));}}),{rootMargin:'-15% 0px -55% 0px'});
-    ['overview','pathways','signals','timing'].forEach(id=>navObserver.observe($(id)));
+    ['references','overview','pathways','signals','timing'].forEach(id=>navObserver.observe($(id)));
   }
   let scrollFrame=false;
   function updateProgress(){
@@ -151,4 +160,93 @@
   }
   window.addEventListener('scroll',()=>{if(!scrollFrame){scrollFrame=true;requestAnimationFrame(updateProgress);}},{passive:true});
   window.addEventListener('resize',updateProgress);updateProgress();
+
+  // ---- Citation tooltips, click-highlight, and backlinks ----
+  const SECTION_NAMES = {references:'References',overview:'The study',methods:'Methods',pathways:'Pathways',signals:'Signals',compare:'Comparisons',timing:'Time to onset',limitations:'Limitations',library:'Library'};
+  const tooltip = $('cite-tooltip');
+  let tooltipFor = null;
+  function tooltipHTML(ids) {
+    return ids.map(id => {
+      const r = refById(id);
+      if(!r) return '';
+      return `<div class="tt-item"><span class="tt-num">[${id}]</span>${escape(r.short)}</div>`;
+    }).join('') + '<span class="tt-hint">Select the marker to jump to the reference. Press Escape to dismiss.</span>';
+  }
+  function showTooltip(anchor) {
+    const ids = (anchor.dataset.refs || '').split(',').map(s => Number(s)).filter(Boolean);
+    if(!ids.length) return;
+    tooltip.innerHTML = tooltipHTML(ids);
+    tooltip.hidden = false;
+    tooltipFor = anchor;
+    const rect = anchor.getBoundingClientRect();
+    tooltip.style.left = Math.min(Math.max(8, rect.left - 140), window.innerWidth - 356) + 'px';
+    const below = rect.bottom + 12 + tooltip.offsetHeight < window.innerHeight;
+    tooltip.style.top = (below ? rect.bottom + 10 : Math.max(8, rect.top - tooltip.offsetHeight - 10)) + 'px';
+  }
+  function hideTooltip() {
+    tooltip.hidden = true;
+    tooltipFor = null;
+  }
+  document.addEventListener('mouseover', e => {
+    const a = e.target.closest && e.target.closest('a.cite');
+    if(a) showTooltip(a);
+  });
+  document.addEventListener('focusin', e => {
+    const a = e.target.closest && e.target.closest('a.cite');
+    if(a) showTooltip(a);
+  });
+  document.addEventListener('mouseout', e => {
+    const a = e.target.closest && e.target.closest('a.cite');
+    if(a && !tooltip.matches(':hover')) hideTooltip();
+  });
+  tooltip.addEventListener('mouseleave', hideTooltip);
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') {
+      hideTooltip();
+      if(tooltipFor) { tooltipFor.focus(); tooltipFor = null; }
+    }
+  });
+  document.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('a.cite');
+    if(!a) return;
+    hideTooltip();
+    const ids = (a.dataset.refs || '').split(',').map(s => Number(s)).filter(Boolean);
+    ids.forEach(id => {
+      const li = document.getElementById('ref-' + id);
+      if(li) {
+        li.classList.add('cite-target');
+        setTimeout(() => li.classList.remove('cite-target'), 2600);
+      }
+    });
+  });
+  // Backlinks: map each reference id to the sections that cite it.
+  // Static markers are scanned from the DOM; dynamic-panel markers are mapped
+  // from the data layer so tab/filter switches do not change the backlinks.
+  (function buildBacklinks() {
+    const citedIn = {};
+    const add = (id, secId) => {
+      citedIn[id] = citedIn[id] || new Set();
+      if(secId) citedIn[id].add(secId);
+    };
+    document.querySelectorAll('a.cite[data-refs]').forEach(a => {
+      const section = a.closest('section[id]');
+      const secId = section ? section.id : null;
+      (a.dataset.refs || '').split(',').map(s => Number(s)).filter(Boolean).forEach(id => add(id, secId));
+    });
+    D.drugs.forEach(d => { if(d.refs) Object.values(d.refs).flat().forEach(id => add(id, 'pathways')); });
+    D.signals.forEach(s => { (s.refs || []).forEach(id => add(id, 'signals')); });
+    D.comparisons.forEach(c => { (c.refs || []).forEach(id => add(id, 'compare')); });
+    D.onset.forEach(o => { (o.refs || []).forEach(id => add(id, 'timing')); });
+    REFS.forEach(r => {
+      const li = document.getElementById('ref-' + r.id);
+      if(!li) return;
+      const secs = citedIn[r.id];
+      const chip = document.createElement('span');
+      chip.className = 'cited-in' + (secs && secs.size ? '' : ' context-only');
+      chip.textContent = secs && secs.size
+        ? 'Cited in: ' + [...secs].map(s => SECTION_NAMES[s] || s).join(', ')
+        : 'Context only';
+      li.appendChild(chip);
+    });
+  })();
 })();
