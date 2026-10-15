@@ -35,3 +35,35 @@
 .refs-cell{font-size:11px;white-space:nowrap}
 @media(max-width:760px){.ref-list>li{flex-direction:column;gap:6px}.ref-list>li .ref-num{flex:none}}
 @media print{.references-section{background:white!important}.ref-list>li{color:black!important;border-color:#ccc}.ref-list a{color:black}.cite{color:black}.cite-tooltip{display:none!important}.ref-list li{break-inside:avoid}}
+
+/* Mobile optimization pass - 2026-10-15: touch targets, overflow guards, type scale */
+html,body{overflow-x:clip}
+.cite{padding:12px 8px;margin:-12px -8px}
+@keyframes signal-breathe{50%{opacity:.45}}
+.forest-row:active,.timeline-row:active,.drug-tabs button:active{background:#ffffff0d}
+.button:active,.outline-button:active{filter:brightness(1.12)}
+.check-label{min-height:44px}
+.ref-groups a{padding-top:14px;padding-bottom:14px}
+.drug-tabs,.plot-scroll,.table-scroll{-webkit-mask-image:linear-gradient(90deg,#000 96%,transparent);mask-image:linear-gradient(90deg,#000 96%,transparent)}
+.menu-toggle>span{transition:transform .2s}
+.menu-toggle.open span:first-child{transform:translateY(3px) rotate(45deg)}
+.menu-toggle.open span:last-child{transform:translateY(-3px) rotate(-45deg)}
+@media(max-width:800px){
+.menu-toggle{min-width:44px;min-height:44px;justify-content:center}
+nav a{padding-top:12px;padding-bottom:12px}
+}
+@media(max-width:560px){
+h1{font-size:clamp(54px,17vw,104px)}
+.research-ribbon{flex-wrap:wrap;row-gap:8px;font-size:9px}
+.hero-actions{flex-direction:column;align-items:start;gap:15px}
+.hero-actions .button{padding:13px 15px}
+.onset-detail{grid-template-columns:1fr}
+.onset-detail h3,.onset-detail>p{grid-column:auto;grid-row:auto}
+.onset-number{grid-column:auto;grid-row:auto;justify-self:start}
+.onset-detail dl{grid-column:auto;grid-row:auto}
+.outline-button{padding:14px 16px}
+select{min-height:44px}
+.filter-controls label{font-size:9px}
+.section-label>span:last-child{font-size:9px}
+.visual-heading>span:last-child{font-size:8px}
+}

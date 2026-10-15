@@ -129,9 +129,10 @@
 
   $('integrity-list').innerHTML=D.caveats.map(c=>`<li>${escape(c)}</li>`).join('');
   const toggle=document.querySelector('.menu-toggle');
-  toggle.addEventListener('click',()=>{const expanded=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',!expanded);$('navigation').classList.toggle('open',!expanded);});
-  $('navigation').querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{$('navigation').classList.remove('open');toggle.setAttribute('aria-expanded','false');}));
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('navigation').classList.contains('open')){$('navigation').classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.focus();}});
+  toggle.addEventListener('click',()=>{const expanded=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',!expanded);toggle.classList.toggle('open',!expanded);$('navigation').classList.toggle('open',!expanded);});
+  $('navigation').querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{$('navigation').classList.remove('open');toggle.classList.remove('open');toggle.setAttribute('aria-expanded','false');}));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('navigation').classList.contains('open')){$('navigation').classList.remove('open');toggle.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.focus();}});
+  document.addEventListener('click',e=>{const nav=$('navigation');if(nav.classList.contains('open')&&!e.target.closest('#navigation')&&!e.target.closest('.menu-toggle')){nav.classList.remove('open');toggle.classList.remove('open');toggle.setAttribute('aria-expanded','false');}});
   const motionReduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if('IntersectionObserver' in window){
     if(!motionReduced){
@@ -159,7 +160,7 @@
       const r = refById(id);
       if(!r) return '';
       return `<div class="tt-item"><span class="tt-num">[${id}]</span>${escape(r.short)}</div>`;
-    }).join('') + '<span class="tt-hint">Select the marker to jump to the reference. Press Escape to dismiss.</span>';
+    }).join('') + '<span class="tt-hint">Select the marker to jump to the reference.</span>';
   }
   function showTooltip(anchor) {
     const ids = (anchor.dataset.refs || '').split(',').map(s => Number(s)).filter(Boolean);
@@ -189,6 +190,7 @@
     if(a && !tooltip.matches(':hover')) hideTooltip();
   });
   tooltip.addEventListener('mouseleave', hideTooltip);
+  document.addEventListener('scroll', hideTooltip, {passive:true});
   document.addEventListener('keydown', e => {
     if(e.key === 'Escape') {
       hideTooltip();
@@ -197,8 +199,8 @@
   });
   document.addEventListener('click', e => {
     const a = e.target.closest && e.target.closest('a.cite');
-    if(!a) return;
     hideTooltip();
+    if(!a) return;
     const ids = (a.dataset.refs || '').split(',').map(s => Number(s)).filter(Boolean);
     ids.forEach(id => {
       const li = document.getElementById('ref-' + id);
