@@ -67,3 +67,190 @@ select{min-height:44px}
 .section-label>span:last-child{font-size:9px}
 .visual-heading>span:last-child{font-size:8px}
 }
+/* ==========================================================================
+   Mobile optimization round 2 - 2026-10-15
+   --------------------------------------------------------------------------
+   Consolidated from tools/mobile-r2/fix-1..fix-8 (workers 1-8 audit,
+   viewports 320/360/390px, code-based verification - no live browser).
+   Appended AFTER the round-1 block so these rules win on equal
+   specificity. No statistics changed, dark identity kept, no em dash.
+   Skipped: fix-8 F4 (.header-cta) - element no longer exists in index.html.
+   ========================================================================== */
+
+/* --- Fix 1: .ref-groups chip rail --------------------------------------
+   Root cause: the mobile-menu rule `@media(max-width:800px){ nav{...} }`
+   (written for #navigation) also matches nav.ref-groups, which never sets
+   flex-direction/position/padding of its own - so column + absolute +
+   padding leaked in, producing full-width stacked boxes overlaid under the
+   sticky header. This block neutralizes every leaked declaration
+   (.ref-groups (0,1,0) beats nav (0,0,1), no !important) and rebuilds the
+   component as a horizontal-scroll chip rail on the proven .drug-tabs
+   pattern. --------------------------------------------------------------- */
+@media(max-width:800px){
+  .ref-groups{
+    display:flex;
+    position:static;
+    left:auto;right:auto;top:auto;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    align-items:center;
+    background:transparent;
+    border:0;
+    padding:4px 0 12px;
+    margin:20px 0 8px;
+    gap:8px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    max-width:100%;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    -webkit-mask-image:linear-gradient(90deg,#000 96%,transparent);
+    mask-image:linear-gradient(90deg,#000 96%,transparent);
+  }
+  .ref-groups::-webkit-scrollbar{display:none}
+
+  .ref-groups a{
+    flex:0 0 auto;
+    display:inline-flex;
+    align-items:center;
+    min-height:44px;
+    white-space:nowrap;
+    font:10px/1.5 'Courier New',monospace;
+    letter-spacing:.1em;
+    color:var(--muted);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:8px 14px;
+  }
+  .ref-groups a:hover{color:var(--lime);border-color:var(--lime)}
+  .ref-groups a:active{background:#ffffff0d}
+}
+
+/* --- Fix 2: hero h1 root-cause fix -------------------------------------
+   Round-1 clamp(54px,17vw,104px) left only ~6px margin at 320px, so font
+   variance still clipped against .hero{overflow:hidden}. New clamp keeps a
+   comfortable margin at every small viewport; its 68px cap matches the
+   561-800px rule so the 560/561px boundary has no size jump. -------------- */
+@media(max-width:560px){
+  h1{font-size:clamp(42px,14vw,68px)}
+}
+
+/* --- Fix 3: header + nav mobile ----------------------------------------
+   nav.open: cap menu height on short viewports (landscape phones) so lower
+   links stay reachable. @400px: defensive brand shrink (Android Roboto
+   fallback is slightly wider than Arial); no identity change at 360px+. --- */
+@media(max-width:800px){
+  nav.open{max-height:calc(100vh - 74px);overflow-y:auto}
+}
+@media(max-width:400px){
+  .brand{font-size:15px}
+  .brand-symbol{font-size:22px;margin-right:2px}
+}
+
+/* --- Fix 4: references list wrap + readability --------------------------
+   No overflow-wrap existed anywhere, so long tokens (e.g. the ~150-char
+   FDA FAERS URL in ref-1) relied on incidental break points and could be
+   silently clipped by html,body{overflow-x:clip}. min-width:0 lets the
+   text column shrink below content width inside the flex row. ------------- */
+.ref-list a,
+.ref-list .ref-text{
+  overflow-wrap:anywhere;
+}
+.ref-list .ref-text{
+  min-width:0;
+}
+@media(max-width:760px){
+  .ref-list>li{
+    font-size:13px;
+    line-height:1.75;
+    padding:14px 0;
+  }
+  .ref-list .ref-group span{
+    line-height:1.8;
+  }
+  .ref-list li.cite-target{
+    outline-offset:-1px;
+  }
+}
+
+/* --- Fix 5: overview + methods ------------------------------------------
+   methods h2: "disproportionality" is 289px at 44px, overflowing the 276px
+   content column at 320px viewport - 40px (263px) fits. flow-step: the
+   98px cohort number overlapped the flow-mini label at 320px; tighter gap
+   and padding give the number ~110px room. finding: slightly tighter
+   vertical rhythm on stacked mobile cards. -------------------------------- */
+@media(max-width:560px){
+  .methods-section h2{font-size:40px}
+  .flow-step{gap:16px;padding:16px 14px}
+  .finding{padding:22px 25px}
+  .finding-number{margin:16px 0 10px}
+}
+
+/* --- Fix 6: pathways + signals scroll behavior ----------------------------
+   F1: round-1 fade masks showed on desktop too (always-on 4% fade even when
+   not scrollable) - now only at <=800px. F2: polite horizontal scroll
+   chaining inside plot/table + iOS momentum. F3: tidier pathway-stats
+   2+1 wrap on very narrow screens. F4: forest-row is a <button> - no text
+   selection on rapid touch taps. ------------------------------------------- */
+.drug-tabs,
+.plot-scroll,
+.table-scroll{
+  -webkit-mask-image:none;
+  mask-image:none;
+}
+@media(max-width:800px){
+  .drug-tabs,
+  .plot-scroll,
+  .table-scroll{
+    -webkit-mask-image:linear-gradient(90deg,#000 94%,transparent);
+    mask-image:linear-gradient(90deg,#000 94%,transparent);
+  }
+}
+.plot-scroll,
+.table-scroll{
+  overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;
+}
+@media(max-width:560px){
+  .pathway-stats{
+    row-gap:20px;
+    column-gap:24px;
+  }
+}
+.forest-row{
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+  -webkit-user-select:none;
+}
+
+/* --- Fix 7: compare + timing type/readability ------------------------------
+   axisTicks() labels inherited body font (14-15px) next to 9px captions -
+   unified to 9px monospace everywhere (bug existed at all widths, hence
+   global). Weibull SVG text: 9px on a 550px viewBox renders ~4.5px at
+   320px - 11px at <=800px restores legibility (CSS beats the font-size="9"
+   presentation attribute; legend ends x=544 < 550, no overlap). Select:
+   restore right padding so the chosen option text clears the native
+   dropdown arrow; round-1 min-height:44px still applies. -------------------- */
+.compare-row .axis-ticks{
+  font:9px 'Courier New',monospace;
+  color:var(--muted);
+}
+@media(max-width:800px){
+  .weibull-chart svg text{font-size:11px}
+}
+@media(max-width:560px){
+  .compare-select-label select{padding:10px 26px 10px 12px}
+}
+
+/* --- Fix 8: small-link tap targets ------------------------------------------
+   Padding + negative-margin pattern (round-1 .cite pattern): hit area grows
+   to ~44px while visual position stays put. F4 (.header-cta) SKIPPED -
+   element was removed from index.html with the library section.
+   F5 note: .text-link underline gap grows from 4px to 14px at <=800px,
+   a small visual trade-off for the hit area. ---------------------------------- */
+footer>div>a{padding-top:14px;padding-bottom:14px;margin-top:-14px;margin-bottom:-14px}
+footer .brand{padding-top:13px;padding-bottom:13px;margin-top:-13px;margin-bottom:-13px}
+.site-header .brand{padding-top:13px;padding-bottom:13px;margin-top:-13px;margin-bottom:-13px}
+@media(max-width:800px){
+  .text-link{padding:14px 8px;margin:-14px -8px}
+}
