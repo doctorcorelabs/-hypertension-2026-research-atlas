@@ -1,6 +1,6 @@
 # SIGNAL / ATLAS
 
-An English-language, standalone visual companion to the Comparative Safety in Resistant Hypertension FAERS research project. The site is references-first: a numbered Vancouver-style reference list (45 entries) opens the content, and factual statements carry inline citation markers.
+An English-language, standalone visual companion to the Comparative Safety in Resistant Hypertension FAERS research project. The site is references-first: a numbered Vancouver-style reference list (43 entries) opens the content, and factual statements carry inline citation markers.
 
 ## Open the website
 
@@ -40,7 +40,7 @@ The original manuscript, abstract, and figures are copied into `sources/` and `a
 | `styles.css` | Editorial visual system and responsive design |
 | `app.js` | Charts, filters, tabs, CSV export, figure dialog |
 | `research-data.js` | Reported estimates and source caveats |
-| `references.js` | Numbered reference data (tooltips, backlinks) |
+| `references.js` | Numbered reference data (citation tooltips) |
 | `assets/` | Original project figures and custom favicon |
 | `sources/` | Local copies of the manuscript, abstract, and reference list |
 | `verify_site.py` | Bounded automated browser and asset checks |
