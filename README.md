@@ -21,7 +21,7 @@ Then visit **http://127.0.0.1:8080**. Stop the server with Ctrl+C. No API key is
 - Nineteen reported global estimates with interactive logarithmic forest plots, therapy/endpoint filters, abstract-only filtering, accessible data table, and filtered CSV download.
 - Eight head-to-head estimates across four selectable comparisons.
 - Median-onset timelines with dated-case counts, bootstrap CI versus IQR distinctions, and an explicitly illustrative Weibull explanation.
-- Limitations, manuscript consistency notes, downloadable source documents, and four original research figures in a keyboard-accessible dialog.
+- Limitations and manuscript consistency notes.
 - Responsive layouts, reduced-motion support, skip link, focus styles, semantic HTML, and print styling.
 
 ## Source and interpretation
@@ -38,7 +38,7 @@ The original manuscript, abstract, and figures are copied into `sources/` and `a
 |---|---|
 | `index.html` | English research narrative and semantic structure |
 | `styles.css` | Editorial visual system and responsive design |
-| `app.js` | Charts, filters, tabs, CSV export, figure dialog |
+| `app.js` | Charts, filters, tabs, CSV export |
 | `research-data.js` | Reported estimates and source caveats |
 | `references.js` | Numbered reference data (citation tooltips) |
 | `assets/` | Original project figures and custom favicon |

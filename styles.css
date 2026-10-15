@@ -32,8 +32,6 @@
 .cite-tooltip .tt-item:last-child{margin-bottom:0}
 .cite-tooltip .tt-num{color:var(--lime);font-family:'Courier New',monospace;margin-right:6px}
 .cite-tooltip .tt-hint{display:block;margin-top:8px;font-size:10px;color:var(--muted)}
-.cite-block{border:1px solid var(--line);border-radius:4px;padding:26px;margin:34px 0;background:var(--panel)}
-.cite-block p{font-size:14px;color:#c9d2c6;margin-top:12px}
 .refs-cell{font-size:11px;white-space:nowrap}
 @media(max-width:760px){.ref-list>li{flex-direction:column;gap:6px}.ref-list>li .ref-num{flex:none}}
 @media print{.references-section{background:white!important}.ref-list>li{color:black!important;border-color:#ccc}.ref-list a{color:black}.cite{color:black}.cite-tooltip{display:none!important}.ref-list li{break-inside:avoid}}
