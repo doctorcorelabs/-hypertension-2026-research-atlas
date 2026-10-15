@@ -169,7 +169,9 @@
     tooltip.hidden = false;
     tooltipFor = anchor;
     const rect = anchor.getBoundingClientRect();
-    tooltip.style.left = Math.min(Math.max(8, rect.left - 140), window.innerWidth - 356) + 'px';
+    const tipW = Math.min(340, window.innerWidth - 16);
+    tooltip.style.maxWidth = tipW + 'px';
+    tooltip.style.left = Math.min(Math.max(8, rect.left - tipW / 2), Math.max(8, window.innerWidth - tipW - 8)) + 'px';
     const below = rect.bottom + 12 + tooltip.offsetHeight < window.innerHeight;
     tooltip.style.top = (below ? rect.bottom + 10 : Math.max(8, rect.top - tooltip.offsetHeight - 10)) + 'px';
   }
